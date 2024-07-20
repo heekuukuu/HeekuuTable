@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HeekuuTable - 회원가입</title>
+</head>
+<body>
+<h1>회원가입</h1>
+<form th:action="@{/signup}" method="post" th:object="${signupRequestDto}">
+    <div>
+        <label>핸드폰 번호: <input type="text" th:field="*{phoneNumber}" /></label>
+    </div>
+    <div>
+        <label>이름: <input type="text" th:field="*{name}" /></label>
+    </div>
+    <div>
+        <label>비밀번호: <input type="password" th:field="*{password}" /></label>
+    </div>
+    <div>
+        <label>사용유형:
+            <select th:field="*{role}">
+                <option th:value="${T(com.example.HeekuuTable.grade.RoleName).ROLE_USER}" th:text="${T(com.example.HeekuuTable.grade.RoleName).ROLE_USER}">Customer</option>
+                <option th:value="${T(com.example.HeekuuTable.grade.RoleName).ROLE_OWNER}" th:text="${T(com.example.HeekuuTable.grade.RoleName).ROLE_OWNER}">Owner</option>
+            </select>
+        </label>
+    </div>
+    <div>
+        <button type="submit">Sign up</button>
+    </div>
+</form>
+<div th:if="${errorMessage}" th:text="${errorMessage}" style="color: red;"></div>
+<div th:if="${successMessage}" th:text="${successMessage}" style="color: green;"></div>
+</body>
+</html>
